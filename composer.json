@@ -1,0 +1,13 @@
+{
+    "name": "rogeriolimabr/sensedia",
+    "description": "Application MVC PHP",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "require": {
+        "symfony/routing": "^5.3",
+        "illuminate/database": "^7.30"
+    }
+}

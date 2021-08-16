@@ -23,6 +23,12 @@ class PessoaController
         require_once APP_ROOT . '\app\views\home.php';
     }
 
+    public function create()
+	{
+        $cidades = Cidade::all();
+        require_once APP_ROOT . '\app\views\create.php';
+	}
+
 	public function edit(int $id)
 	{
         $cidades = Cidade::all();
@@ -43,5 +49,25 @@ class PessoaController
 
         require_once APP_ROOT . '\app\views\show.php';
     }
+
+    public function delete(int $id)
+    {
+        $pessoa = Pessoa::find($id);
+        $pessoa->delete($_POST);
+
+        return $this->index();
+    }
+
+    public function store()
+    {
+        $pessoa = new Pessoa();
+        $pessoa->fill($_POST);
+        $pessoa->save();
+
+        require_once APP_ROOT . '\app\views\show.php';
+    }
+
+
+
 }
 

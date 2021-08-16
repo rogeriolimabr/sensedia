@@ -7,7 +7,7 @@ require_once '../vendor/autoload.php';
 require_once '../config/app.php';
 
 // Configura a base de dados no ORM;
-use \App\Models\Database;
+use App\Models\Database;
 new Database();
 
 // Routes

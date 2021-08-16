@@ -49,63 +49,68 @@
     <main role="main" class="container-fluid">
 
         <div class="starter-template">
-            <form>
-                <div class="form-group">
-                  <label for="PrimeiroNome">Primeiro Nome</label>
-                  <input type="text" class="form-control" id="PrimeiroNome" name="PrimeiroNome" placeholder="Ex: Fulano">
+            <form class="form-horizontal" method="POST" action="/store">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="PrimeiroNome">Primeiro Nome</label>
+                            <input type="text" class="form-control" id="PrimeiroNome" name="PrimeiroNome"
+                                placeholder="Ex: Fulano"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="SegundoNome">Segundo Nome</label>
+                            <input type="text" class="form-control" id="SegundoNome" name="SegundoNome"
+                                placeholder="Ex: de Tal"/>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                  <label for="SegundoNome">Segundo Nome</label>
-                  <input type="text" class="form-control" id="SegundoNome" name="SegundoNome" placeholder="Ex: de Tal">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="Endereco">Endereco</label>
+                            <input type="text" class="form-control" id="Endereco" name="Endereco"
+                                placeholder="Ex: Rua do Bobo, n 0"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="Cidade">Cidade</label>
+                            <select class="form-control" name="CidadeId" id="Cidade">
+                                <option disabled selected>Escolha uma cidade</option>
+                                <?php foreach($cidades as $cidade) { ?>
+                                <option value="<?php echo $cidade->CidadeId ?>">
+                                    <?php echo $cidade->CidadeDesc; ?>
+                                </option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="Endereco">Endereco</label>
-                    <input type="text" class="form-control" id="Endereco" name="Endereco" placeholder="Ex: Rua do Bobo, n 0">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="DataNascimento">Data de Nascimento</label>
+                            <input type="date" class="form-control" id="DataNascimento" name="DataNascimento">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="Status">Status</label>
+                            <select class="form-control" name="Status" id="Status">
+                                <option disabled selected>Escolha uma opção</option>
+                                <option value="1">Ativo</option>
+                                <option value="2">Inativo</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="Cidade">Cidade</label>
-                    <select class="form-control" name="CidadeId" id="Cidade">
-                        <option disabled selceted>Escolha uma cidade</option>
-                        <?php foreach($cidades as $cidade) { ?>
-                            <option value="<?php echo $cidade->CidadeId ?>"><?php echo $cidade->CidadeDesc ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="form-group">
-                  <label for="DataNascimento">Data de Nascimento</label>
-                  <input type="date" class="form-control" id="DataNascimento" name="DataNascimento">
-                </div>
-                <div class="form-group">
-                  <label for="Status">Status</label>
-                  <select class="form-control" name="Status" id="Status">
-                    <option disabled selceted>Escolha uma opção</option>
-                    <option value="1">Ativo</option>
-                    <option value="2">Inativo</option>
-                </select>
+                <div class="row py-4 float-right">
+                    <a href="/home" class="btn btn-outline-info mx-3">Voltar</a>
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
                 </div>
             </form>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="delConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Confirmação</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Tem certeza que deseja excluir este registro?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-danger" id="confirmDelete">Confirmar</button>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </main><!-- /.container -->
@@ -128,16 +133,6 @@
 
             var app_url = 'http://pqsticket/';
 
-            $('#search').on('click', function () {
-                if ($('input[name=keywords]').val()) {
-                    $('#searchForm').submit();
-                }
-            });
-
-            $('#editButton').on('click', function () {
-                pk = $(this).data('pk');
-                window.location.href = app_url+'edit/' + pk;
-            });
 
         });
 

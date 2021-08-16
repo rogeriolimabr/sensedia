@@ -95,7 +95,7 @@
                         <td>
                             <button class="btn btn-outline-info edit-btn" data-pk="<?php echo $pessoa->PessoaId ?>"><i
                                     class="fas fa-edit"></i></button>
-                            <button class="btn btn-outline-danger" data-toggle="modal" data-target="#delConfirmModal"
+                            <button class="btn btn-outline-danger del-btn" data-toggle="modal" data-target="#delConfirmModal"
                                 data-pk="<?php echo $pessoa->PessoaId ?>"><i class="fas fa-trash"></i></button>
 
                         </td>
@@ -121,7 +121,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-danger" id="confirmDelete">Confirmar</button>
+                        <button type="button" class="btn btn-danger" id="confirmDelete" data-pk="">Confirmar</button>
                     </div>
                 </div>
             </div>
@@ -157,6 +157,21 @@
                 pk = $(this).data('pk');
                 window.location.href = app_url+'edit/' + pk;
             });
+
+            $('.del-btn').on('click', function() {
+                pk = $(this).data('pk');
+                $('#confirmDelete').attr('data-pk', pk);
+            });
+
+            $('#confirmDelete').on('click', function() {
+                pk = $(this).data('pk');
+                window.location.href = app_url+'delete/' + pk;
+            });
+
+            $('#new').on('click', function() {
+                window.location.href = app_url+'create';
+            });
+
 
         });
 
